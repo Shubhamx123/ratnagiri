@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply px-3 py-1.5 text-gray-700 hover:text-forest-green hover:bg-gray-50 rounded-lg transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-forest-green after:scale-x-0 after:origin-left after:transition-transform hover:after:scale-x-100;
+  }
+
+  .mobile-nav-link {
+    @apply block px-4 py-2 text-gray-700 hover:text-forest-green hover:bg-gray-50 rounded-lg transition-colors text-sm;
+  }
+
+  .btn-primary {
+    @apply bg-forest-green text-white px-6 py-2 rounded-lg hover:bg-forest-green/90 transition-colors;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
