@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, Search, Globe, X, ChevronDown, MapPin, Phone, Mail } from 'lucide-react';
 import NavMenu from './NavMenu';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -195,6 +196,18 @@ const Header = () => {
                     </div>
                   )
                 ))}
+                <Link 
+                  to="/videos" 
+                  className="nav-link text-sm"
+                >
+                  Videos
+                </Link>
+                <Link 
+                  to="/admin/login" 
+                  className="nav-link text-sm"
+                >
+                  Admin Login
+                </Link>
               </div>
             </nav>
 
