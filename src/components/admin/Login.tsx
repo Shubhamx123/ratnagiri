@@ -20,6 +20,8 @@ const Login: React.FC = () => {
     setError('');
     setLoading(true);
 
+    console.log("Submitting Credentials:", credentials); // Debugging log
+
     try {
       const success = await login(credentials);
       if (success) {

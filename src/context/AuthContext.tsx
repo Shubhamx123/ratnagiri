@@ -2,6 +2,9 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { AuthContextType, User, LoginCredentials } from '../types/auth.types';
 import { authService } from '../services/authService';
 
+const ADMIN_PASSWORD = "H@numan@12345"; // Updated to the new password
+const ADMIN_USERNAME = "Admin@Nisargyatri"; // Updated to the new username
+
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -15,18 +18,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = async (credentials: LoginCredentials) => {
-    try {
-      const user = await authService.login(credentials);
-      if (user) {
-        setIsAuthenticated(true);
-        setUser(user);
-        localStorage.setItem('authToken', 'dummy-token'); // In real app, use actual token
-        return true;
-      }
-      return false;
-    } catch (error) {
-      console.error('Login error:', error);
-      return false;
+    const { username, password } = credentials;
+
+    // Debugging logs
+    console.log("Username:", username);
+    console.log("Password:", password);
+    console.log("Expected Username:", ADMIN_USERNAME);
+    console.log("Expected Password:", ADMIN_PASSWORD);
+
+    // Check if the username and password match
+    if (username.trim() === ADMIN_USERNAME && password.trim() === ADMIN_PASSWORD) {
+      // Logic for successful login
+      return true;
+    } else {
+      return false; // Invalid credentials
     }
   };
 

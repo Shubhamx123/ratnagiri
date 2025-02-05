@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, Search, Globe, X, ChevronDown, MapPin, Phone, Mail } from 'lucide-react';
 import NavMenu from './NavMenu';
 import { Link } from 'react-router-dom';
+import logo from '../img/nisargayatri-logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,94 +18,15 @@ const Header = () => {
   }, []);
 
   const mainNavItems = [
-    {
-      title: 'About',
-      items: [
-        'Aim',
-        'Mission',
-        'History',
-        'Registration Certificate',
-        'MOA',
-        'Code of Commitments',
-        {
-          title: 'Members',
-          items: [
-            'Founder Members',
-            'Associates',
-            'Advisors',
-            'Supporters',
-            'Special Contributions'
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Konkan Geoglyphs',
-      items: [
-        'Preface',
-        'Discovery',
-        'Geography',
-        'Sites',
-        'Age and Meaning',
-        'Uniqueness',
-        'Conservation',
-        'Projects',
-        {
-          title: 'Activity and Publications',
-          items: [
-            'Activities',
-            'Publications',
-            'Tours',
-            'Social Media',
-            'Videos'
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Heritage',
-      items: [
-        'Abstract',
-        'Tangible Heritage',
-        'Intangible Heritage',
-        'Cultural Heritage',
-        'Natural Heritage',
-        'Projects',
-        'Activity'
-      ]
-    },
-    {
-      title: 'Wonders',
-      items: [
-        'Abstract',
-        'Hot Water Springs',
-        'Magnetic Deflection',
-        'Other Wonders'
-      ]
-    },
-    {
-      title: 'Biodiversity',
-      items: [
-        'Abstract',
-        'Flora',
-        {
-          title: 'Fauna',
-          items: [
-            'Sea Animals',
-            'Amphibians',
-            'Reptiles',
-            'Butterflies & Insects',
-            'Birds',
-            'Mammals'
-          ]
-        },
-        'Turtle Conservation',
-        'Activity'
-      ]
-    },
+    'Home',
+    'About',
+    'Konkan Geoglyphs',
+    'Heritage',
+    'Wonders',
+    'Biodiversity',
     'Projects',
     'Support Us',
-    'Videos'
+    'Videos',
   ];
 
   return (
@@ -152,7 +74,7 @@ const Header = () => {
                   शोध | संरक्षण | संवर्धन
                 </div>
                 <img 
-                  src="https://ibb.co/MybS8qfh" 
+                  src={logo} 
                   alt="निसर्गयात्री" 
                   className="h-8 mt-1"
                 />
@@ -197,10 +119,10 @@ const Header = () => {
                   )
                 ))}
                 <Link 
-                  to="/videos" 
+                  to="/upload" 
                   className="nav-link text-sm"
                 >
-                  Videos
+                  Upload
                 </Link>
                 <Link 
                   to="/admin/login" 
