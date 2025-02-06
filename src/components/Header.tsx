@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, Search, Globe, X, ChevronDown, MapPin, Phone, Mail, Upload } from 'lucide-react';
 import NavMenu from './NavMenu';
-import { Link } from 'react-router-dom';
-import logo from '../img/nisargayatri-logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,15 +16,94 @@ const Header = () => {
   }, []);
 
   const mainNavItems = [
-    'Home',
-    'About',
-    'Konkan Geoglyphs',
-    'Heritage',
-    'Wonders',
-    'Biodiversity',
+    {
+      title: 'About',
+      items: [
+        'Aim',
+        'Mission',
+        'History',
+        'Registration Certificate',
+        'MOA',
+        'Code of Commitments',
+        {
+          title: 'Members',
+          items: [
+            'Founder Members',
+            'Associates',
+            'Advisors',
+            'Supporters',
+            'Special Contributions'
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Konkan Geoglyphs',
+      items: [
+        'Preface',
+        'Discovery',
+        'Geography',
+        'Sites',
+        'Age and Meaning',
+        'Uniqueness',
+        'Conservation',
+        'Projects',
+        {
+          title: 'Activity and Publications',
+          items: [
+            'Activities',
+            'Publications',
+            'Tours',
+            'Social Media',
+            'Videos'
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Heritage',
+      items: [
+        'Abstract',
+        'Tangible Heritage',
+        'Intangible Heritage',
+        'Cultural Heritage',
+        'Natural Heritage',
+        'Projects',
+        'Activity'
+      ]
+    },
+    {
+      title: 'Wonders',
+      items: [
+        'Abstract',
+        'Hot Water Springs',
+        'Magnetic Deflection',
+        'Other Wonders'
+      ]
+    },
+    {
+      title: 'Biodiversity',
+      items: [
+        'Abstract',
+        'Flora',
+        {
+          title: 'Fauna',
+          items: [
+            'Sea Animals',
+            'Amphibians',
+            'Reptiles',
+            'Butterflies & Insects',
+            'Birds',
+            'Mammals'
+          ]
+        },
+        'Turtle Conservation',
+        'Activity'
+      ]
+    },
     'Projects',
     'Support Us',
-    'Videos',
+    'Videos'
   ];
 
   return (
@@ -72,15 +149,9 @@ const Header = () => {
               <div className="flex flex-col items-center">
               
                 <img 
-<<<<<<< HEAD
                   src="https://i.imghippo.com/files/PE4946gZg.JPG" 
                  
                   className="h-12 mt-1"
-=======
-                  src={logo} 
-                  alt="निसर्गयात्री" 
-                  className="h-8 mt-1"
->>>>>>> ef63efd12e2cba64c5b4f3e33a5c53b2a5012e1c
                 />
               </div>
             </div>
@@ -111,7 +182,6 @@ const Header = () => {
                       aria-expanded={activeDropdown === item.title}
                       aria-haspopup="true"
                     >
-<<<<<<< HEAD
                       <span>{item.title}</span>
                       <ChevronDown size={14} className="transform group-hover:rotate-180 transition-transform" />
                     </button>
@@ -133,44 +203,6 @@ const Header = () => {
               >
                 <span>Admin</span>
               </button>
-=======
-                      {item}
-                    </a>
-                  ) : (
-                    <div
-                      key={item.title}
-                      className="relative group"
-                      onMouseEnter={() => setActiveDropdown(item.title)}
-                      onMouseLeave={() => setActiveDropdown(null)}
-                    >
-                      <button 
-                        className="nav-link text-sm flex items-center space-x-1"
-                        aria-expanded={activeDropdown === item.title}
-                        aria-haspopup="true"
-                      >
-                        <span>{item.title}</span>
-                        <ChevronDown size={14} className="transform group-hover:rotate-180 transition-transform" />
-                      </button>
-                      {activeDropdown === item.title && (
-                        <NavMenu items={item.items} />
-                      )}
-                    </div>
-                  )
-                ))}
-                <Link 
-                  to="/upload" 
-                  className="nav-link text-sm"
-                >
-                  Upload
-                </Link>
-                <Link 
-                  to="/admin/login" 
-                  className="nav-link text-sm"
-                >
-                  Admin Login
-                </Link>
-              </div>
->>>>>>> ef63efd12e2cba64c5b4f3e33a5c53b2a5012e1c
             </nav>
 
             {/* Mobile menu button */}
