@@ -33,6 +33,7 @@ const features = [
   }
 ];
 
+
 const FeaturedGrid = () => {
   return (
     <section className="py-20 bg-off-white">
