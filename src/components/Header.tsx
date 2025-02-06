@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Search, Globe, X, ChevronDown, MapPin, Phone, Mail } from 'lucide-react';
+import { Menu, Search, Globe, X, ChevronDown, MapPin, Phone, Mail, Upload } from 'lucide-react';
 import NavMenu from './NavMenu';
-import { Link } from 'react-router-dom';
-import logo from '../img/nisargayatri-logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,15 +16,94 @@ const Header = () => {
   }, []);
 
   const mainNavItems = [
-    'Home',
-    'About',
-    'Konkan Geoglyphs',
-    'Heritage',
-    'Wonders',
-    'Biodiversity',
+    {
+      title: 'About',
+      items: [
+        'Aim',
+        'Mission',
+        'History',
+        'Registration Certificate',
+        'MOA',
+        'Code of Commitments',
+        {
+          title: 'Members',
+          items: [
+            'Founder Members',
+            'Associates',
+            'Advisors',
+            'Supporters',
+            'Special Contributions'
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Konkan Geoglyphs',
+      items: [
+        'Preface',
+        'Discovery',
+        'Geography',
+        'Sites',
+        'Age and Meaning',
+        'Uniqueness',
+        'Conservation',
+        'Projects',
+        {
+          title: 'Activity and Publications',
+          items: [
+            'Activities',
+            'Publications',
+            'Tours',
+            'Social Media',
+            'Videos'
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Heritage',
+      items: [
+        'Abstract',
+        'Tangible Heritage',
+        'Intangible Heritage',
+        'Cultural Heritage',
+        'Natural Heritage',
+        'Projects',
+        'Activity'
+      ]
+    },
+    {
+      title: 'Wonders',
+      items: [
+        'Abstract',
+        'Hot Water Springs',
+        'Magnetic Deflection',
+        'Other Wonders'
+      ]
+    },
+    {
+      title: 'Biodiversity',
+      items: [
+        'Abstract',
+        'Flora',
+        {
+          title: 'Fauna',
+          items: [
+            'Sea Animals',
+            'Amphibians',
+            'Reptiles',
+            'Butterflies & Insects',
+            'Birds',
+            'Mammals'
+          ]
+        },
+        'Turtle Conservation',
+        'Activity'
+      ]
+    },
     'Projects',
     'Support Us',
-    'Videos',
+    'Videos'
   ];
 
   return (
@@ -70,67 +147,62 @@ const Header = () => {
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <div className="flex flex-col items-center">
-                <div className="text-earth-brown text-sm font-semibold tracking-wider">
-                  शोध | संरक्षण | संवर्धन
-                </div>
+              
                 <img 
-                  src={logo} 
-                  alt="निसर्गयात्री" 
-                  className="h-8 mt-1"
+                  src="https://i.imghippo.com/files/PE4946gZg.JPG" 
+                 
+                  className="h-12 mt-1"
                 />
-               
               </div>
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex">
-              <div className="flex space-x-1">
-                <a href="/" className="nav-link text-sm">
-                  Home
-                </a>
-                {mainNavItems.map((item) => (
-                  typeof item === 'string' ? (
-                    <a 
-                      key={item}
-                      href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
-                      className="nav-link text-sm"
+            <nav className="hidden lg:flex items-center space-x-1">
+              <a href="/" className="nav-link text-sm">
+                Home
+              </a>
+              {mainNavItems.map((item) => (
+                typeof item === 'string' ? (
+                  <a 
+                    key={item}
+                    href={`/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                    className="nav-link text-sm"
+                  >
+                    {item}
+                  </a>
+                ) : (
+                  <div
+                    key={item.title}
+                    className="relative group"
+                    onMouseEnter={() => setActiveDropdown(item.title)}
+                    onMouseLeave={() => setActiveDropdown(null)}
+                  >
+                    <button 
+                      className="nav-link text-sm flex items-center space-x-1"
+                      aria-expanded={activeDropdown === item.title}
+                      aria-haspopup="true"
                     >
-                      {item}
-                    </a>
-                  ) : (
-                    <div
-                      key={item.title}
-                      className="relative group"
-                      onMouseEnter={() => setActiveDropdown(item.title)}
-                      onMouseLeave={() => setActiveDropdown(null)}
-                    >
-                      <button 
-                        className="nav-link text-sm flex items-center space-x-1"
-                        aria-expanded={activeDropdown === item.title}
-                        aria-haspopup="true"
-                      >
-                        <span>{item.title}</span>
-                        <ChevronDown size={14} className="transform group-hover:rotate-180 transition-transform" />
-                      </button>
-                      {activeDropdown === item.title && (
-                        <NavMenu items={item.items} />
-                      )}
-                    </div>
-                  )
-                ))}
-                <Link 
-                  to="/upload" 
-                  className="nav-link text-sm"
-                >
-                  Upload
-                </Link>
-                <Link 
-                  to="/admin/login" 
-                  className="nav-link text-sm"
-                >
-                  Admin Login
-                </Link>
-              </div>
+                      <span>{item.title}</span>
+                      <ChevronDown size={14} className="transform group-hover:rotate-180 transition-transform" />
+                    </button>
+                    {activeDropdown === item.title && (
+                      <NavMenu items={item.items} />
+                    )}
+                  </div>
+                )
+              ))}
+              <button 
+                onClick={() => window.location.href = '/upload'} 
+                className="nav-link text-sm flex items-center space-x-1 text-forest-green"
+              >
+                <Upload size={9} />
+                <span>Upload</span>
+              </button>
+              <button 
+                className="nav-link text-sm flex items-center space-x-1 bg-forest-green text-white hover:bg-forest-green/90"
+              >
+                <span>Admin</span>
+              </button>
             </nav>
 
             {/* Mobile menu button */}
@@ -245,6 +317,13 @@ const MobileMenu = ({ items }: { items: any[] }) => {
           </div>
         )
       ))}
+      <a href="/upload" className="mobile-nav-link flex items-center space-x-2 text-forest-green">
+        <Upload size={14} />
+        <span>Upload</span>
+      </a>
+      <a href="/admin" className="mobile-nav-link bg-forest-green text-white hover:bg-forest-green/90">
+        Admin
+      </a>
     </nav>
   );
 };
