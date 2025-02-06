@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { LoginCredentials } from '../../types/auth.types';
 
-const ADMIN_PASSWORD = "H@numan@12345"; // Updated to the new password
+const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD || ""; 
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -19,6 +19,8 @@ const Login: React.FC = () => {
     e.preventDefault();
     setError('');
     setLoading(true);
+
+    console.log("Submitting Credentials:", credentials); // Debugging log
 
     try {
       const success = await login(credentials);
